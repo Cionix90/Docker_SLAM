@@ -2,3 +2,6 @@
 	path = docker_simulator
 	url = https://github.com/Cionix90/docker_simulator.git
 
+[submodule "slam_module/src/LIO-SAM"]
+	path = slam_module/src/LIO-SAM
+	url = https://github.com/Cionix90/LIO-SAM.git
