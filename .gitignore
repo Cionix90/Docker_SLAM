@@ -5,3 +5,5 @@ docker_simulator/log
 slam_module/install
 slam_module/build
 slam_module/log
+
+slam_modules/test_bag
