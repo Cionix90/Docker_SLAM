@@ -1,17 +1,14 @@
 services:
-  ros2_jazzy_sim:
+  ros2_humble_sim:
     build:
       context: ./docker_simulator/DockerFiles
       dockerfile: Dockerfile
       args:
-        - BASE_IMAGE=osrf/ros
-        - BASE_TAG=jazzy-desktop-full
-        - DISTRO=jazzy
         - IMAGE_NAME=docker_control_simulation
         - IMAGE_TAG=0.1
         - WORKSPACE=docker_simulation_ws
 
-    container_name: ros2_jazzy_simulator
+    container_name: ros2_humble_simulator
     networks:
       - ros2_internal
     # network_mode: "host"
@@ -36,7 +33,11 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=all,graphics,display,video,utility,compute
       - __NV_PRIME_RENDER_OFFLOAD=1
       - __GLX_VENDOR_LIBRARY_NAME=nvidia
-      
+      - OptiX_INSTALL_DIR=/home/ros/NVIDIA-OptiX-SDK-7.2.0-linux64-x86_64
+      - IGN_GAZEBO_SYSTEM_PLUGIN_PATH=/home/ros/RGLGazeboPlugin/install/RGLServerPlugin:${IGN_GAZEBO_SYSTEM_PLUGIN_PATH:-}
+      - IGN_GUI_PLUGIN_PATH=/home/ros/RGLGazeboPlugin/install/RGLVisualize:${IGN_GUI_PLUGIN_PATH:-}
+      - RGL_PATTERNS_DIR=/home/ros/RGLGazeboPlugin/lidar_patterns/
+
     privileged: true  # Fixed spelling and removed duplicate
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
@@ -48,6 +49,7 @@ services:
       - /dev/nvidia0:/dev/nvidia0
       - /dev/nvidiactl:/dev/nvidiactl
       - /dev/nvidia-modeset:/dev/nvidia-modeset
+      - /home/punk-opc/SDK/NVIDIA-OptiX-SDK-7.2.0-linux64-x86_64:/home/ros/NVIDIA-OptiX-SDK-7.2.0-linux64-x86_64
       
       
       
@@ -55,8 +57,8 @@ services:
     # Command to source ROS2 environment and start shell
     command: >
       bash -c "
-        source /opt/ros/jazzy/setup.bash &&
-        echo 'ROS2 Jazzy environment loaded' &&
+        source /opt/ros/humble/setup.bash &&
+        echo 'ROS2 humble environment loaded' &&
         bash
       "
     # devices:
@@ -73,15 +75,15 @@ services:
               count: all
               capabilities: [gpu]
 
-  ros2_jazzy_slam:
+  ros2_humble_slam:
       build:
-        context: ./slam_module/src/LIO-SAM
+        context: ./slam_modules/Dockerfiles
         dockerfile: Dockerfile
         args:
         - IMAGE_NAME=docker_slam_module
         - IMAGE_TAG=0.1
         - WORKSPACE=docker_slam_ws
-      container_name: ros2_jazzy_slam
+      container_name: ros2_humble_slam
       networks:
         - ros2_internal
       # network_mode: "host"
@@ -106,27 +108,27 @@ services:
         - NVIDIA_DRIVER_CAPABILITIES=all,graphics,display,video,utility,compute
         - __NV_PRIME_RENDER_OFFLOAD=1
         - __GLX_VENDOR_LIBRARY_NAME=nvidia
-        
+        - OptiX_INSTALL_DIR=/home/ros/NVIDIA-OptiX-SDK-7.2.0-linux64-x86_64
       privileged: true  # Fixed spelling and removed duplicate
       volumes:
         - /tmp/.X11-unix:/tmp/.X11-unix:rw
         # - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
         - ~/.bash_history:/home/ros/.bash_history
-        - ./slam_module/:/home/ros/docker_slam_ws
+        - ./slam_modules/:/home/ros/docker_slam_ws
         - /dev/input:/dev/input
         - /dev/dri:/dev/dri
         - /dev/nvidia0:/dev/nvidia0
         - /dev/nvidiactl:/dev/nvidiactl
         - /dev/nvidia-modeset:/dev/nvidia-modeset
-        
+        - /home/punk-opc/SDK/NVIDIA-OptiX-SDK-7.2.0-linux64-x86_64:/home/ros/NVIDIA-OptiX-SDK-7.2.0-linux64-x86_64
         
         
 
       # Command to source ROS2 environment and start shell
       command: >
         bash -c "
-          source /opt/ros/jazzy/setup.bash &&
-          echo 'ROS2 Jazzy environment loaded' &&
+          source /opt/ros/humble/setup.bash &&
+          echo 'ROS2 humble environment loaded' &&
           bash
         "
       # devices:

@@ -3,3 +3,6 @@
 	url = https://github.com/Cionix90/docker_simulator.git
 
 
+[submodule "slam_modules/src/lidarslam_ros2"]
+	path = slam_modules/src/lidarslam_ros2
+	url = https://github.com/Cionix90/lidarslam_ros2.git
