@@ -7,3 +7,4 @@ slam_modules/build
 slam_modules/log
 
 slam_modules/test_bag
+slam_modules/glim_config
