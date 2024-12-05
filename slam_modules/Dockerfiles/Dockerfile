@@ -42,7 +42,20 @@ RUN apt-get install -y \
     ros-humble-rmw-cyclonedds-cpp \
     ros-humble-libg2o \
     ros-humble-sdformat-urdf \
+    ros-humble-perception-pcl \
+    ros-humble-pcl-ros \
+    ros-humble-pcl-conversions ros-humble-nmea-msgs \
+    ros-humble-tf2-ros ros-humble-tf2-sensor-msgs ros-humble-tf2-geometry-msgs \
     && apt-get clean
+# Install dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ros-humble-pcl-ros ros-humble-pcl-conversions ros-humble-nmea-msgs \
+    ros-humble-tf2-ros ros-humble-tf2-sensor-msgs ros-humble-tf2-geometry-msgs \
+    ros-humble-geodesy ros-humble-libg2o ros-humble-interactive-markers wget \
+    libceres-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # RUN apt-get install -y  curl lsb-release gnupg
 # RUN curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
 # RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null

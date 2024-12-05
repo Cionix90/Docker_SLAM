@@ -1,5 +1,18 @@
 [submodule "docker_simulator"]
 	path = docker_simulator
 	url = https://github.com/Cionix90/docker_simulator.git
-
-
+[submodule "slam_modules/src/mrg_slam_msgs"]
+	path = slam_modules/src/mrg_slam_msgs
+	url = https://github.com/aserbremen/mrg_slam_msgs.git
+[submodule "slam_modules/src/small_gicp"]
+	path = slam_modules/src/small_gicp
+	url = https://github.com/koide3/small_gicp.git
+[submodule "slam_modules/src/fast_gicp"]
+	path = slam_modules/src/fast_gicp
+	url = https://github.com/koide3/fast_gicp.git
+[submodule "slam_modules/src/ndt_omp"]
+	path = slam_modules/src/ndt_omp
+	url = https://github.com/koide3/ndt_omp.git
+[submodule "slam_modules/src/mrg_slam"]
+	path = slam_modules/src/mrg_slam
+	url = https://github.com/Cionix90/mrg_slam.git
