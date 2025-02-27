@@ -16,3 +16,9 @@
 [submodule "slam_modules/src/mrg_slam"]
 	path = slam_modules/src/mrg_slam
 	url = https://github.com/Cionix90/mrg_slam.git
+[submodule "slam_modules/src/glim"]
+	path = slam_modules/src/glim
+	url = https://github.com/koide3/glim.git
+[submodule "slam_modules/src/glim_ros2"]
+	path = slam_modules/src/glim_ros2
+	url = https://github.com/koide3/glim_ros2.git

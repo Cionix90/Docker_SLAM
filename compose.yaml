@@ -77,19 +77,21 @@ services:
 
   ros2_humble_slam:
       build:
-        context: ./slam_modules/Dockerfiles
-        dockerfile: Dockerfile
+        context: ./slam_modules/src
+        dockerfile: glim_ros2/docker/Dockerfile.gcc.cuda
         args:
-        - IMAGE_NAME=docker_slam_module
-        - IMAGE_TAG=0.1
-        - WORKSPACE=docker_slam_ws
-      container_name: ros2_humble_slam
-      networks:
-        - ros2_internal
-      # network_mode: "host"
+        - BASE_IMAGE=koide3/gtsam_points:jammy_cuda12.2
+        - ROS_DISTRO=humble
+       
+      container_name: ros2_humble_slam_glim_cuda
+      # networks:
+      #   - ros2_internal
+      network_mode: "host"
       # Interactive shell settings
       stdin_open: true
       tty: true
+      ipc: host
+      pid: host
       # Network settings
 
       # Environment variables
@@ -98,7 +100,6 @@ services:
         - QT_X11_NO_MITSHM=1
         - XAUTHORITY=/tmp/.docker.xauth
         - ROS_DOMAIN_ID=15
-        - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
         # Shell history
         - HISTFILE=/home/ros/.bash_history
         - HISTFILESIZE=10000
@@ -121,7 +122,7 @@ services:
         - /dev/nvidiactl:/dev/nvidiactl
         - /dev/nvidia-modeset:/dev/nvidia-modeset
         - /home/punk-opc/SDK/NVIDIA-OptiX-SDK-7.2.0-linux64-x86_64:/home/ros/NVIDIA-OptiX-SDK-7.2.0-linux64-x86_64
-        
+
         
 
       # Command to source ROS2 environment and start shell
