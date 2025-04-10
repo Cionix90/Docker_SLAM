@@ -117,7 +117,7 @@ services:
         - /tmp/.X11-unix:/tmp/.X11-unix:rw
         # - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
         - ~/.bash_history:/home/ros/.bash_history
-        - ./slam_modules/:/home/ros/docker_slam_ws
+        - ./slam_modules/glim_config:/root/ros2_ws/glim_config
         - /dev/input:/dev/input
         - /dev/dri:/dev/dri
         - /dev/nvidia0:/dev/nvidia0
