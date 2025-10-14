@@ -8,7 +8,7 @@ services:
         - IMAGE_TAG=0.1
         - WORKSPACE=docker_simulation_ws
 
-    container_name: ros2_humble_simulator
+    container_name: ros2_humble_simulator_
     networks:
       - ros2_internal
     # network_mode: "host"
@@ -29,7 +29,7 @@ services:
       - HISTFILESIZE=10000
       - RCUTILS_COLORIZED_OUTPUT=1
       - IGN_VERSION=fortress
-      - IGN_GAZEBO_RESOURCE_PATH=/opt/ros/humble/share/hunter_se_description/share
+      - IGN_GAZEBO_RESOURCE_PATH=/home/ros/docker_simulation_ws/install/hunter_se_description/share/:/home/ros/docker_simulation_ws/install/scout_description/share/
       - IGN_GAZEBO_MODEL_PATH=
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all,graphics,display,video,utility,compute
@@ -86,9 +86,9 @@ services:
         - ROS_DISTRO=humble
        
       container_name: ros2_humble_slam_glim_cuda
-      # networks:
-      #   - ros2_internal
-      network_mode: "host"
+      networks:
+        - ros2_internal
+      # network_mode: "host"
       # Interactive shell settings
       stdin_open: true
       tty: true
@@ -118,6 +118,7 @@ services:
         # - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
         - ~/.bash_history:/home/ros/.bash_history
         - ./slam_modules/glim_config:/root/ros2_ws/glim_config
+        - ./slam_modules/cantiere_tests:/root/ros2_ws/src/cantiere_tests
         - /dev/input:/dev/input
         - /dev/dri:/dev/dri
         - /dev/nvidia0:/dev/nvidia0
