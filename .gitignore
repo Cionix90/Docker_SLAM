@@ -8,3 +8,5 @@ slam_modules/log
 
 slam_modules/test_bag
 slam_modules/glim_config
+slam_modules/cantiere_tests/
+slam_modules/anymal_ros/
