@@ -8,4 +8,14 @@ if is present the compilation error, unrecognise allias GTSAM::GTSAM open the fi
 ``` /home/punk-opc/Documents/LO_Software/Docker_SLAM/slam_modules/src/glim/CMakeLists.txt ```
 and sobstitute "GTSAM::GTSAM" with "gtsam" 
 
+## configuration file
+
+The configuration file are stored into the ``` glim_configs``` folder. To have more information about the configuration file [follow](https://koide3.github.io/glim/parameters.html).
+
 ## Launch 
+
+It is possible to start the slam session using the command:
+
+```ros2 run glim_ros glim_rosnode --ros-args -p config_path:=$(realpath ./config)```
+
+to have more information [see here](https://koide3.github.io/glim/quickstart.html)

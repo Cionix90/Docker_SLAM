@@ -29,7 +29,7 @@ services:
       - HISTFILESIZE=10000
       - RCUTILS_COLORIZED_OUTPUT=1
       - IGN_VERSION=fortress
-      - IGN_GAZEBO_RESOURCE_PATH=/home/ros/docker_simulation_ws/install/hunter_se_description/share/:/home/ros/docker_simulation_ws/install/scout_description/share/
+      - IGN_GAZEBO_RESOURCE_PATH=/home/ros/docker_simulation_ws/install/hunter_se_description/share/:/home/ros/docker_simulation_ws/install/scout_description/share/:/home/ros/docker_simulation_ws/install/gazebo_models/share/gazebo_models/world::/home/ros/docker_simulation_ws/install/gazebo_models/share/gazebo_models/models
       - IGN_GAZEBO_MODEL_PATH=
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all,graphics,display,video,utility,compute
